@@ -361,6 +361,13 @@ void LayoutGame::draw(Menu* menu)
 
 		mvwprintw(this->rightmost->win, 12, 8, "%dms", this->game->getDelay(this->game->score->level));
 
+		// PPM
+		this->rightmost->print("Speed", 2, 14, hilite);
+		wattrset(this->rightmost->win, COLOR_PAIR(0));
+
+		mvwprintw(this->rightmost->win, 14, 8, "%dppm", delta_s?this->game->stats.pieces*60/delta_s:0);		
+
+
 		// Bottom line - version and Help
 		this->rightmost->print("yetris v" VERSION, 1, this->rightmost->getH() - 2, Colors::pair(COLOR_CYAN, COLOR_DEFAULT));
 
