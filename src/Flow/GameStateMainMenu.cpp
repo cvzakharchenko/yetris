@@ -20,6 +20,8 @@ enum NamesToEasilyIdentifyTheMenuItemsInsteadOfRawNumbers
 	GO_BACK,
 	STARTING_LEVEL,
 	INITIAL_NOISE,
+	CHEESE,
+	SURVIVAL,
 	INVISIBLE,
 	SLIDE_LEFT,
 	SLIDE_RIGHT,
@@ -482,7 +484,15 @@ void GameStateMainMenu::createSinglePlayerMenu()
 	number = new MenuItemNumberbox("Initial Noise", INITIAL_NOISE, 0, 20, Globals::Profiles::current->settings.game.initial_noise);
 	menuSinglePlayer->add(number);
 
+	number = new MenuItemNumberbox("Survival", SURVIVAL, 0, 60, Globals::Profiles::current->settings.game.survival);
+	menuSinglePlayer->add(number);
+
 	MenuItemCheckbox* check;
+
+	check = new MenuItemCheckbox("Cheese",
+	                             CHEESE,
+	                             Globals::Profiles::current->settings.game.cheese);
+	menuSinglePlayer->add(check);
 
 	check = new MenuItemCheckbox("Invisible",
 	                             INVISIBLE,
@@ -723,6 +733,9 @@ void GameStateMainMenu::saveSettingsMenuSinglePlayer()
 	current->settings.game.initial_noise  = this->menuSinglePlayer->getInt(INITIAL_NOISE);
 	current->settings.game.starting_level = (unsigned int)this->menuSinglePlayer->getInt(STARTING_LEVEL);
 
+	current->settings.game.survival    = this->menuSinglePlayer->getInt(SURVIVAL);
+	current->settings.game.cheese      = this->menuSinglePlayer->getBool(CHEESE);
+	
 	current->settings.game.invisible   = this->menuSinglePlayer->getBool(INVISIBLE);
 	current->settings.game.slide_left  = this->menuSinglePlayer->getBool(SLIDE_LEFT);
 	current->settings.game.slide_right = this->menuSinglePlayer->getBool(SLIDE_RIGHT);

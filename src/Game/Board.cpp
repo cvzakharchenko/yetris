@@ -110,7 +110,7 @@ void Board::pushRight()
 		this->block[0][j] = tmp;
 	}
 }
-void Board::pushUp()
+void Board::pushUp(bool cheese)
 {
 	// Pushing everything up except for the bottom line
 	for (int j = 0; j < (this->height - 1); j++)
@@ -131,7 +131,9 @@ void Board::pushUp()
 			continue;
 		}
 
-		if (Utils::Random::boolean())
+		if (cheese)
+			this->block[i][this->height - 1] = Globals::Profiles::current->settings.theme.piece_L;
+		else if(Utils::Random::boolean())
 			this->block[i][this->height - 1] = Globals::Profiles::current->settings.theme.piece_colorless;
 	}
 }
@@ -144,13 +146,13 @@ void Board::pushDown()
 	for (int i = 0; i < this->width; i++)
 		this->block[i][0] = nullptr;
 }
-void Board::addNoise(int height)
+void Board::addNoise(int height, bool cheese)
 {
 	if (height > (this->height - 1))
 		height = (this->height - 1);
 
 	for (int i = 0; i < height; i++)
-		this->pushUp();
+		this->pushUp(cheese);
 }
 int Board::markFullLines()
 {

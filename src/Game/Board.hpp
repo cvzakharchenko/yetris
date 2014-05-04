@@ -25,10 +25,10 @@ public:
 
 	void pushRight();
 	void pushLeft();
-	void pushUp();
+	void pushUp(bool cheese=false);
 	void pushDown();
 
-	void addNoise(int height);
+	void addNoise(int height, bool cheese=false);
 
 	/// Removes all filled lines, pushing others down.
 	///

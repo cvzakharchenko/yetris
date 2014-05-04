@@ -309,6 +309,10 @@ void Profile::loadSettings()
 
 	INI_GET(settings.game.next_pieces,    "game:next_pieces");
 	INI_GET(settings.game.initial_noise,  "game:initial_noise");
+	INI_GET(settings.game.cheese,         "game:cheese");
+	INI_GET(settings.game.survival,         "game:survival");
+
+
 	INI_GET(settings.game.starting_level, "game:starting_level");
 
 	INI_GET(settings.game.has_ghost, "game:ghost");
@@ -421,6 +425,10 @@ void Profile::saveSettings()
 
 	INI_SET("game:next_pieces",    settings.game.next_pieces);
 	INI_SET("game:initial_noise",  settings.game.initial_noise);
+	INI_SET("game:cheese",         settings.game.cheese);
+	INI_SET("game:survival",       settings.game.survival);
+
+
 	INI_SET("game:starting_level", settings.game.starting_level);
 
 	INI_SET("game:ghost", settings.game.has_ghost);

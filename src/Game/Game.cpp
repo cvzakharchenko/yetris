@@ -50,13 +50,15 @@ void Game::start()
 	this->userAskedToGoToMenu = false;
 	this->gameOver            = false;
 
+	// this->lastPushUp          = 0;
+
 	this->layout = new LayoutGame(this, 80, 24);
 
 	// Creating the board and adding noise.
 	this->board = new Board(0, 0, DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT);
 
 	if (Globals::Profiles::current->settings.game.initial_noise != 0)
-		this->board->addNoise(Globals::Profiles::current->settings.game.initial_noise);
+		this->board->addNoise(Globals::Profiles::current->settings.game.initial_noise,Globals::Profiles::current->settings.game.cheese);
 
 	// Populating all the next pieces
 	this->nextPieces.resize(Globals::Profiles::current->settings.game.next_pieces);
@@ -224,6 +226,15 @@ void Game::update()
 		}
 
 		return;
+	}
+
+	int survival=Globals::Profiles::current->settings.game.survival;
+	int delta_s=this->timer.delta_s();
+	static int lastPushUp=0;
+
+	if (survival&&delta_s!=lastPushUp&&delta_s%survival==0){
+		this->board->pushUp(Globals::Profiles::current->settings.game.cheese);
+		lastPushUp=delta_s;
 	}
 
 	// Dropping piece if enough time has passed

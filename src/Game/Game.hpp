@@ -63,6 +63,8 @@ public:
 	void pause(bool option);
 
 protected:
+	// int lastPushUp;
+
 	LayoutGame* layout;
 
 	/// If the game is over (board is full of blocks).

@@ -135,6 +135,9 @@ public:
 			int line_clear_delay; // ms
 
 			bool invisible;
+
+			bool cheese;
+			int survival;
 		};
 		Game game;
 
